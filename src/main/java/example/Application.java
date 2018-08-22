@@ -2,25 +2,23 @@ package example;
 
 public class Application {
     public static void main(String[] args) {
-        int startNumber = 1;
-        int endNumber = 3;
+        int startNumber = 100000000;
+        int endNumber = 100000001;
         verifyParameterLegal(startNumber, endNumber);
         String result = buildMultiplicationTable(startNumber, endNumber);
         System.out.println(result);
     }
 
     static String buildMultiplicationTable(int startNumber, int endNumber) {
-        int maxNumber = endNumber * endNumber;
-        int maxNumberLength = String.valueOf(maxNumber).length();
+        long maxNumber = (long)endNumber * endNumber;
+        int multiplyNumberLength = String.valueOf(maxNumber).length();
         int endNumberLength = String.valueOf(endNumber).length();
-        int maxLength = maxNumberLength + endNumberLength * 2 - 3;
-        int width = maxLength == 0 ? 1 : maxLength;
 
-        String template = "%s * %s = %-" + width +"s\t";
+        String template = "%-" + endNumberLength + "s * %-" + endNumberLength + "s = %-" + multiplyNumberLength +"s ";
         StringBuilder table = new StringBuilder();
 
         for(int leftNumber = startNumber; leftNumber <= endNumber; leftNumber++){
-            for (int rightNumber = startNumber; rightNumber <= leftNumber; rightNumber++){
+            for (long rightNumber = startNumber; rightNumber <= leftNumber; rightNumber++){
                 table.append(String.format(template, rightNumber, leftNumber, leftNumber * rightNumber));
             }
             table.append("\n");
