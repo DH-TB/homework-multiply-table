@@ -2,8 +2,8 @@ package example;
 
 public class Application {
     public static void main(String[] args) {
-        int startNumber = 100000000;
-        int endNumber = 100000001;
+        int startNumber = 100000;
+        int endNumber = 100001;
         verifyParameterLegal(startNumber, endNumber);
         String result = buildMultiplicationTable(startNumber, endNumber);
         System.out.println(result);
