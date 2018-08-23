@@ -10,20 +10,33 @@ public class Application {
     }
 
     static String buildMultiplicationTable(int startNumber, int endNumber) {
-        long maxNumber = (long)endNumber * endNumber;
-        int multiplyNumberLength = String.valueOf(maxNumber).length();
-        int endNumberLength = String.valueOf(endNumber).length();
-
-        String template = "%-" + endNumberLength + "s * %-" + endNumberLength + "s = %-" + multiplyNumberLength +"s ";
         StringBuilder table = new StringBuilder();
+        String template = buildTemplate(endNumber);
 
         for(int leftNumber = startNumber; leftNumber <= endNumber; leftNumber++){
             for (long rightNumber = startNumber; rightNumber <= leftNumber; rightNumber++){
                 table.append(String.format(template, rightNumber, leftNumber, leftNumber * rightNumber));
             }
+
             table.append("\n");
         }
+
         return table.toString();
+    }
+
+    private static String buildTemplate(int endNumber) {
+        long maxNumber = (long)endNumber * endNumber;
+        int multiplyNumberLength = String.valueOf(maxNumber).length();
+        int endNumberLength = String.valueOf(endNumber).length();
+
+        return new StringBuilder().append("%-")
+                .append(endNumberLength)
+                .append("s * %-")
+                .append(endNumberLength)
+                .append("s = %-")
+                .append(multiplyNumberLength)
+                .append("s ")
+                .toString();
     }
 
     static void verifyParameterLegal(int startNumber, int endNumber){
